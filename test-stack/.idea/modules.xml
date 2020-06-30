@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/test-stack.iml" filepath="$PROJECT_DIR$/test-stack.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xxx-base/xxx-base.iml" filepath="$PROJECT_DIR$/xxx-base/xxx-base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xxx-module/xxx-beans/xxx-beans.iml" filepath="$PROJECT_DIR$/xxx-module/xxx-beans/xxx-beans.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xxx-module/xxx-controllers/xxx-controllers.iml" filepath="$PROJECT_DIR$/xxx-module/xxx-controllers/xxx-controllers.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xxx-module/xxx-mappers/xxx-mappers.iml" filepath="$PROJECT_DIR$/xxx-module/xxx-mappers/xxx-mappers.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xxx-module/xxx-module.iml" filepath="$PROJECT_DIR$/xxx-module/xxx-module.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xxx-module/xxx-services/xxx-services.iml" filepath="$PROJECT_DIR$/xxx-module/xxx-services/xxx-services.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xxx-module/xxx-starter/xxx-starter.iml" filepath="$PROJECT_DIR$/xxx-module/xxx-starter/xxx-starter.iml" />
+    </modules>
+  </component>
+</project>

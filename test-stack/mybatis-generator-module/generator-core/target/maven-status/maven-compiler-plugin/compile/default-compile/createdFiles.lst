@@ -1,0 +1,6 @@
+com\ml\demo\mybatis\generator\core\options\JdbcConnectionConfiguration.class
+com\ml\demo\mybatis\generator\core\options\Context.class
+com\ml\demo\mybatis\generator\core\options\Option.class
+com\ml\demo\mybatis\generator\core\options\JavaMapperConfiguration.class
+com\ml\demo\mybatis\generator\core\options\XmlMapperConfiguration.class
+com\ml\demo\mybatis\generator\core\options\JavaModelConfiguration.class

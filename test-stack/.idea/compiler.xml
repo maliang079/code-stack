@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="xxx-controllers" />
+        <module name="xxx-beans" />
+        <module name="xxx-mappers" />
+        <module name="xxx-services" />
+        <module name="xxx-starter" />
+        <module name="xxx-base" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="mybatis-generator-core" target="1.5" />
+      <module name="mybatis-generator-module" target="1.5" />
+      <module name="test-stack" target="1.5" />
+      <module name="xxx-base" target="1.5" />
+      <module name="xxx-beans" target="1.5" />
+      <module name="xxx-controllers" target="1.5" />
+      <module name="xxx-mappers" target="1.5" />
+      <module name="xxx-module" target="1.5" />
+      <module name="xxx-services" target="1.5" />
+      <module name="xxx-starter" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
