@@ -45,7 +45,7 @@ logging.level.com.ml.test.xxx.mapper: debug
 
 eureka:
   instance:
-    metadataMap.alarmEmail: ITdbus.list@creditease.cn
+    metadataMap.alarmEmail: maliang@126.com
     prefer-ip-address: true
     instance-id: ${spring.cloud.client.ipAddress}:${server.port}
   client:
