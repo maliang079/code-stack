@@ -1,5 +1,10 @@
 package com.test.lambda;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -41,13 +46,21 @@ import java.util.stream.Stream;
  *            sorted 自然排序   Comparable
  *            sorted(Comparator comparator) 定制排序
  *
+ *        4). 查找与匹配
+ *            allMatch  检查是否匹配所有元素
+ *            anyMatch  检查是否至少匹配一个元素
+ *            noneMatch  检查是否没有匹配所有元素
+ *            findFirst  返回第一个元素
+ *            findAny  返回当前流中的任意一个元素
+ *            count  返回流中元素的总个数
+ *            max  返回流中最大元素
+ *            min  返回流中最小元素
  *
+ *        5). 归约
+ *            reduce  可以将流中元素反复结合起来得到一个值
  *
- *
- *
- *
- *
- *
+ *        6). 收集
+ *            collect  将流转化为其它形式。接收一个Collector接口的实现，用于给stream中元素做汇总的方法
  *
  *     3. 终止操作(终端操作)
  *
@@ -76,12 +89,77 @@ import java.util.stream.Stream;
  */
 public class TestStream {
 
-    public static void main(String[] args) {
+    public static class User {
+        private int id;
+        private String name;
+        private int age;
+        private String address;
+        private String sex;
 
-        Stream.iterate(1, (x) -> x +1);
+        public User() {}
 
-        Stream.generate(Math::random);
+        public User(int id, String name, int age, String address, String sex) {
+            this.id = id;
+            this.name = name;
+            this.age = age;
+            this.address = address;
+            this.sex = sex;
+        }
 
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public int getAge() {
+            return age;
+        }
+
+        public void setAge(int age) {
+            this.age = age;
+        }
+
+        public String getAddress() {
+            return address;
+        }
+
+        public void setAddress(String address) {
+            this.address = address;
+        }
+
+        public String getSex() {
+            return sex;
+        }
+
+        public void setSex(String sex) {
+            this.sex = sex;
+        }
+
+        @Override
+        public String toString() {
+            return "User{" +
+                    "id=" + id +
+                    ", name='" + name + '\'' +
+                    ", age=" + age +
+                    ", address='" + address + '\'' +
+                    ", sex='" + sex + '\'' +
+                    '}';
+        }
+    }
+
+    private static boolean isSexMale(User user) {
+        return user.getSex().equals("男");
     }
 
     class Hello implements Hahaha, Heiheihei {
@@ -103,6 +181,77 @@ public class TestStream {
         default String say() {
             return "heiheihei";
         }
+    }
+
+    public static void main(String[] args) {
+
+        // 通过iterate、generate生成stream
+        Stream.iterate(1, (x) -> x +1);
+        Stream.generate(Math::random);
+
+        List<User> list = Arrays.asList(new User(1, "张三", 38, "大望路", "男"),
+                new User(2, "李四", 27, "国贸", "男"),
+                new User(3, "王五", 24, "天宁寺", "女"),
+                new User(4, "赵六", 40, "回龙观", "男"),
+                new User(6, "田七", 32, "天通苑", "女"),
+                new User(7, "孙八", 35, "天安门", "女"));
+
+
+        System.out.println("是否性别都是男:");
+        System.out.println(list.stream().allMatch(TestStream::isSexMale));
+
+        System.out.println("是否有任意一个性别为男:");
+        System.out.println(list.stream().anyMatch(TestStream::isSexMale));
+
+        System.out.println("所有用户年龄总和:");
+        System.out.println(list.stream().map(User::getAge).reduce(0, Integer::sum));
+
+        System.out.println("获取年龄大于30的用户:");
+        list.stream().filter(user -> user.getAge() > 30).collect(Collectors.toList()).stream().forEach(System.out::println);
+
+        System.out.println("所有用户按照年龄进行排序");
+        list.stream().sorted(Comparator.comparingInt(User::getAge)).forEach(System.out::println);
+
+        System.out.println("求所有用户年龄的平均值:");
+        System.out.println(list.stream().collect(Collectors.averagingInt(User::getAge)));
+
+        System.out.println("求用户个数：");
+        System.out.println(list.stream().collect(Collectors.counting()));
+
+        System.out.println("把所有用户信息转换成仪name为key，address为value的map类型：");
+        System.out.println(list.stream().collect(Collectors.toMap(User::getName, User::getAddress)));
+
+        System.out.println("把所有用户按照性别分组:");
+        System.out.println(list.stream().collect(Collectors.groupingBy(User::getSex)));
+
+        System.out.println("把所有用户先按照性别分组，再按照住址分组:");
+        System.out.println(list.stream().collect(Collectors.groupingBy(User::getSex, Collectors.groupingBy(User::getAddress))));
+
+        System.out.println("把所有用户先按照性别分组，再按照住址分组，最后从user中只提取name信息:");
+        System.out.println(list.stream().collect(Collectors.groupingBy(User::getSex, Collectors.groupingBy(User::getAddress, Collectors.mapping(User::getName, Collectors.toList())))));
+
+        System.out.println("把所有用户的name提取出来放到list中");
+        System.out.println(list.stream().collect(Collectors.mapping(User::getName, Collectors.toList())));
+
+        System.out.println("提取年龄最大的用户：");
+        System.out.println(list.stream().collect(Collectors.maxBy(Comparator.comparingInt(User::getAge))));
+
+        System.out.println("提取年龄最小的用户：");
+        System.out.println(list.stream().collect(Collectors.minBy(Comparator.comparingInt(User::getAge))));
+
+        System.out.println("获取关于年龄的相关汇总信息：");
+        System.out.println(list.stream().collect(Collectors.summarizingDouble(User::getAge)));
+
+        System.out.println("将所有用户名按照逗号连接起来:");
+        System.out.println(list.stream().map(User::getName).collect(Collectors.joining(",")));
+
+        System.out.println("最后的返回信息是一个不可变的list");
+        list.stream().collect(Collectors.collectingAndThen(Collectors.toList(), Collections::unmodifiableList));
+
+        System.out.println("把所有用户按照年龄进行分区, 小于35的一个分区，大于等于35的一个分区，并且只提取name");
+        System.out.println(list.stream().collect(Collectors.partitioningBy((u) -> u.getAge() >= 35,
+                Collectors.mapping(User::getName, Collectors.toList()))));
+
     }
 
 }
