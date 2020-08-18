@@ -23,7 +23,7 @@ do
     for NODE in ${NODES[@]}
     do
       echo "start scp -r $DNAME/$BNAME $USER@$NODE:$DNAME/$BNAME"
-      ssh dbus@$NODE "mkdir -pv $DNAME"
+      ssh $USER@$NODE "mkdir -pv $DNAME"
       scp -r $DNAME/$BNAME $USER@$NODE:$DNAME/$BNAME
     done
   fi
