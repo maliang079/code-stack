@@ -23,6 +23,9 @@ package com.test.bigdata.hadoop;
  *            NlineInputFormat 代表每个map进程处理的InputSplit不在按照block块儿去划分，而是按照NlineInputFormat指定的行数来划分。即输入文件的总行数/n=切片数，如果不能整除，切片数=商+1
  *                             key和value与TextInputFormat相同
  *
+ * shuffle机制
+ * map方法之后，reduce方法之前的数据处理过程称为shuffle（主要涉及到：分区、排序、combiner、归并排序、压缩）
+ *
  *
  *
  */

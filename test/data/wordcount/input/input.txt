@@ -1,0 +1,7 @@
+java,vb,asp.net,c#.net
+jsp,go,scala,python,c
+c++,sql,plsql,javascript,vbscript
+vue,jquery,ext,easyui
+hadoop,kafka,flume,zookeeper,hbase
+spark,flink,storm
+kudu,hbase,java
