@@ -26,7 +26,27 @@ package com.test.bigdata.hadoop;
  * shuffle机制
  * map方法之后，reduce方法之前的数据处理过程称为shuffle（主要涉及到：分区、排序、combiner、归并排序、压缩）
  *
+ * partition分区总结：
+ * 如果reduce task的数量大于partition的数量，则会多产生几个空的输出文件
+ * 如果1< reduce task < partition数量，则有一部分分区的数据无处安放，抛出Exception
+ * 如果reduce task = 1，则不管多个个partition，最终只会交给一个reduce task，最终只会产生一个结果文件
+ * 分区号必须从零开始逐一累加。
  *
+ * 排序
+ * 排序是map reduce框架中最重要的操作之一
+ * MapTask和ReduceTask均会对数据按照key进行排序。该操作属于hadoop的默认行为。任何应用程序中的数据均会被排序，而不管逻辑上是否需要
+ * 默认排序是按照字典顺序排序，且实现该排序的方法是快速排序
+ *
+ * 排序分类
+ * 部分排序
+ *    MapReduce根据输入记录的键对数据集排序，保证输出的每个文件内部有序
+ * 全排序
+ *   最终输出结果只有一个文件，且文件内部有序。实现方式是只设置一个reduce task。但该方法在处理大型文件时效率极低，因为一台机器处理所有文件
+ *   ，完全丧失了MapReduce所提供的并行框架
+ * 辅助排序
+ *   在Reduce端对key进行分组。
+ * 二次排序
+ *  在自定义排序过程中，如果compareTo中的判断条件为两个即为二次排序
  *
  */
 public class MapReduce {

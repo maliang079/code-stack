@@ -17,10 +17,15 @@ public class YMDT implements WritableComparable<YMDT> {
     @Override
     public int compareTo(YMDT o) {
         int retVal = 0;
-        SimpleDateFormat sdf = new SimpleDateFormat("yyy-MM-dd");
+        SimpleDateFormat ydm = new SimpleDateFormat("yyy-MM-dd");
+        SimpleDateFormat ym = new SimpleDateFormat("yyyy-MM");
         try {
-            Date ym1 = sdf.parse(this.ymd);
-            Date ym2 = sdf.parse(o.ymd);
+            Date ymd1 = ydm.parse(this.ymd);
+            Date ymd2 = ydm.parse(o.ymd);
+
+            Date ym1 = ym.parse(ym.format(ymd1));
+            Date ym2 = ym.parse(ym.format(ymd2));
+
             retVal = ym1.compareTo(ym2) * -1;
         } catch (ParseException e) {
             e.printStackTrace();

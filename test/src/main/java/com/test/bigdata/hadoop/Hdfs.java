@@ -147,7 +147,7 @@ public class Hdfs {
      *
      */
 
-    public static void main(String[] args) throws URISyntaxException, IOException {
+    public static void main(String[] args) throws Exception {
 
         try (FileSystem fs = FileSystem.get(new URI("hdfs://node-one:9000"), new Configuration())) {
             fs.copyToLocalFile(new Path("/test-shell/a.txt"), new Path("E:\\WorkSpace\\GitWorkSpace\\code-stack\\test\\test-shell"));

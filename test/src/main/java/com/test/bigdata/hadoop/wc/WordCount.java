@@ -28,8 +28,8 @@ public class WordCount {
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);
 
-        FileInputFormat.setInputPaths(job, new Path("E:\\WorkSpace\\GitWorkSpace\\code-stack\\test\\data\\wordcount\\input\\input.txt"));
-        FileOutputFormat.setOutputPath(job, new Path("E:\\WorkSpace\\GitWorkSpace\\code-stack\\test\\data\\wordcount\\output"));
+        FileInputFormat.setInputPaths(job, new Path("D:\\WorkSpace\\GitWorkSpace\\code-stack\\code-stack\\test\\data\\wordcount\\input\\input.txt"));
+        FileOutputFormat.setOutputPath(job, new Path("D:\\WorkSpace\\GitWorkSpace\\code-stack\\code-stack\\test\\data\\wordcount\\output"));
 
         boolean result = job.waitForCompletion(true);
         System.out.println(result);
